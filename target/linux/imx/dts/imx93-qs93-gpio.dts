@@ -1,0 +1,31 @@
+// SPDX-License-Identifier: (GPL-2.0 OR MIT)
+/*
+ * Copyright (C) 2022 ...
+ *
+ */
+
+/dts-v1/;
+
+#include "imx93-karo.dtsi"
+
+/ {
+    // Fragment to configure the MX93_PAD_GPIO_IO25 pin for output
+    // The &iomuxc phandle must match your base i.MX93 DT
+    &iomuxc {
+        pinctrl_gpio_io25_output: gpioio25grp {
+            fsl,pins = <
+                // Pin ID: MX93_PAD_GPIO_IO25__GPIO2_IO25
+                // This macro defines the pin's physical location and muxing to GPIO.
+                // It's defined in arch/arm64/boot/dts/freescale/imx93-pinfunc.h
+                // Note: It's GPIO2_IO25, meaning it uses GPIO Controller 2.
+
+                // Pad Configuration: 0x6
+                // This is a common basic output configuration for i.MX SoCs.
+                // VERIFY this value (0x6) in the i.MX93 Reference Manual,
+                // IOMUXC chapter (SW_PAD_CTL_PAD_XXXX registers) for appropriate
+                // Slew Rate and Drive Strength for your output needs.
+                MX93_PAD_GPIO_IO25__GPIO2_IO25 0x6
+            >;
+        };
+    };
+};

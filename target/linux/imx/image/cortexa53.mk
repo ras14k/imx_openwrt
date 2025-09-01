@@ -345,3 +345,32 @@ define Device/imx93qsb
 	imx-append-env $$(ENV_NAME)-uboot-env.bin
 endef
 TARGET_DEVICES += imx93qsb
+
+define Device/qsbase93
+  $(call Device/Default)
+  DEVICE_VENDOR := Ka-Ro
+  DEVICE_MODEL := QSBASE93
+#  DEVICE_VARIANT := SD Boot
+#  BOARD_NAME := iMX93
+  SOC_TYPE := iMX93
+  BOOT_OFFSET := 32
+#  BOOT_TYPE := flash_singleboot
+#  ENV_NAME:=imx93evk-sdboot
+#  DEVICE_PACKAGES += \
+#	atf-imx93evk \
+#	firmware-imx \
+#	firmware-sentinel \
+#	imx-mkimage \
+#	u-boot-imx93evk
+  DEVICE_DTS_DIR := ../dts
+  DEVICE_DTS := imx93-qs93-5210 imx93-qs93-5210-qsbase93 imx93-qs93-5210-qsbase93-new
+  IMAGES := 
+#  IMAGE/sdcard.img := \
+#	imx-clean | \
+#	imx-create-flash $$(BOARD_NAME) $$(BOOT_TYPE) | \
+#	boot-img-ext4 | \
+#	sdcard-img-ext4 | \
+#	imx-append-boot iMX93 | \
+#	imx-append-env $$(ENV_NAME)-uboot-env.bin
+endef
+TARGET_DEVICES += qsbase93
